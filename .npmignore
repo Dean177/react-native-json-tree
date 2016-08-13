@@ -1,0 +1,6 @@
+.DS_Store
+*.log
+test
+examples
+coverage
+npm-debug.log
