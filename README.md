@@ -60,9 +60,7 @@ const theme = {
   base0F: '#cc6633'
 };
 
-<div>
-  <JSONTree data={data} theme={theme} isLightTheme={false} />
-</div>
+<JSONTree data={data} theme={theme} isLightTheme={false} />
 
 ```
 

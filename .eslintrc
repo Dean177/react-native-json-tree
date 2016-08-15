@@ -1,0 +1,15 @@
+{
+  "env": {
+    "mocha": true
+  },
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "react/jsx-filename-extension": 0
+  }
+}
