@@ -9,7 +9,6 @@ import ItemRange from './ItemRange';
 /**
  * Renders nested values (eg. objects, arrays, lists, etc.)
  */
-
 function renderChildNodes(props, from, to) {
   const {
     nodeType,
@@ -20,6 +19,7 @@ function renderChildNodes(props, from, to) {
     postprocessValue,
     sortObjectKeys,
   } = props;
+
   const childNodes = [];
 
   getCollectionEntries(nodeType, data, sortObjectKeys, collectionLimit, from, to).forEach(entry => {
@@ -92,7 +92,7 @@ export default class JSONNestedNode extends React.Component {
 
     // calculate individual node expansion if necessary
     const expanded = props.shouldExpandNode && !props.isCircular ?
-        props.shouldExpandNode(props.keyPath, props.data, props.level) : false;
+      props.shouldExpandNode(props.keyPath, props.data, props.level) : false;
     this.state = {
       expanded,
       createdChildNodes: false,
@@ -134,6 +134,8 @@ export default class JSONNestedNode extends React.Component {
     );
     const stylingArgs = [keyPath, nodeType, expanded, expandable];
 
+    const onPressItemString = expandable ? this.handlePress : () => {};
+
     return hideRoot ? (
       <View {...styling('rootNode', ...stylingArgs)}>
         <View {...styling('rootNodeChildren', ...stylingArgs)}>
@@ -152,19 +154,21 @@ export default class JSONNestedNode extends React.Component {
         }
         <Text
           {...styling(['label', 'nestedNodeLabel'], ...stylingArgs)}
-          onPress={expandable && this.handlePress}
+          onPress={onPressItemString}
         >
           {labelRenderer(...stylingArgs)}
         </Text>
         <Text
           {...styling('nestedNodeItemString', ...stylingArgs)}
-          onPress={expandable && this.handlePress}
+          onPress={onPressItemString}
         >
           {renderedItemString}
         </Text>
-        <View {...styling('nestedNodeChildren', ...stylingArgs)}>
-          {renderedChildren}
-        </View>
+        {expanded ?
+          <View {...styling('nestedNodeChildren', ...stylingArgs)}>
+            {renderedChildren}
+          </View> :
+          null}
       </View>
     );
   }

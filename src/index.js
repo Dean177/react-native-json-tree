@@ -15,22 +15,20 @@ function checkLegacyTheming(theme, props) {
     getValueStyle: 'valueText',
   };
 
-  const deprecatedStylingMethods = Object.keys(deprecatedStylingMethodsMap)
+  const deprecatedStylingMethods = Object
+    .keys(deprecatedStylingMethodsMap)
     .filter(name => props[name]);
 
   if (deprecatedStylingMethods.length > 0) {
     if (typeof theme === 'string') {
-      theme = {
-        extend: theme,
-      };
+      theme = { extend: theme };
     } else {
       theme = { ...theme };
     }
 
     deprecatedStylingMethods.forEach(name => {
-      console.error( // eslint-disable-line no-console
-        `Styling method "${name}" is deprecated, use the "theme" property instead`
-      );
+      // eslint-disable-next-line no-console
+      console.error(`Styling method "${name}" is deprecated, use the "theme" property instead`);
 
       theme[deprecatedStylingMethodsMap[name]] = ({ style }, ...args) => ({
         style: {
@@ -49,13 +47,13 @@ class JSONTree extends React.Component {
   static propTypes = {
     data: PropTypes.oneOfType([
       PropTypes.array,
-      PropTypes.object,
-    ]).isRequired,
-    hideRoot: PropTypes.bool,
-    theme: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.number,
       PropTypes.object,
       PropTypes.string,
-    ]),
+    ]).isRequired,
+    hideRoot: PropTypes.bool,
+    theme: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     invertTheme: PropTypes.bool,
     keyPath: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     postprocessValue: PropTypes.func,
@@ -91,10 +89,12 @@ class JSONTree extends React.Component {
     return (
       <View {...styling('tree')}>
         <JSONNode
-          {...{ postprocessValue, hideRoot, styling, ...rest }}
+          hideRoot={hideRoot}
           keyPath={hideRoot ? [] : keyPath}
+          postprocessValue={postprocessValue}
+          styling={styling}
           value={postprocessValue(value)}
-        />
+          {...rest } />
       </View>
     );
   }

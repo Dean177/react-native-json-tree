@@ -12,35 +12,41 @@ const styles = StyleSheet.create({
   },
 });
 
+// const exampleJson = {
+//   array: [1, 2, 3],
+//   emptyArray: [],
+//   bool: true,
+//   date: new Date(),
+//   object: {
+//     foo: {
+//       bar: 'baz',
+//       nested: {
+//         moreNested: {
+//           evenMoreNested: {
+//             veryNested: {
+//               insanelyNested: {
+//                 ridiculouslyDeepValue: 'Hello',
+//                 levels: 9,
+//                 tooMany: true,
+//               },
+//             },
+//           },
+//         },
+//       },
+//     },
+//     baz: undefined,
+//     func: function User() {},
+//   },
+//   emptyObject: {},
+//   immutable: Map({ key: 'value' }), // eslint-disable-line new-cap
+//   hugeArray: Array.from({ length: 100 }).map((_, i) => `item #${i}`),
+//   longString: 'Loremipsumdolorsitamet,consecteturadipiscingelit.Namtempusipsumutfelisdignissimauctor',
+// };
+
 const exampleJson = {
-  array: [1, 2, 3],
-  emptyArray: [],
-  bool: true,
-  date: new Date(),
-  object: {
-    foo: {
-      bar: 'baz',
-      nested: {
-        moreNested: {
-          evenMoreNested: {
-            veryNested: {
-              insanelyNested: {
-                ridiculouslyDeepValue: 'Hello',
-                levels: 9,
-                tooMany: true,
-              },
-            },
-          },
-        },
-      },
-    },
-    baz: undefined,
-    func: function User() {},
-  },
-  emptyObject: {},
-  immutable: Map({ key: 'value' }), // eslint-disable-line new-cap
-  hugeArray: Array.from({ length: 10000 }).map((_, i) => `item #${i}`),
-  longString: 'Loremipsumdolorsitamet,consecteturadipiscingelit.Namtempusipsumutfelisdignissimauctor.Maecenasodiolectus,finibusegetultricesvel,aliquamutelit.Loremipsumdolorsitamet,consecteturadipiscingelit.Namtempusipsumutfelisdignissimauctor.Maecenasodiolectus,finibusegetultricesvel,aliquamutelit.Loremipsumdolorsitamet,consecteturadipiscingelit.Namtempusipsumutfelisdignissimauctor.Maecenasodiolectus,finibusegetultricesvel,aliquamutelit.' // eslint-disable-line max-len
+  key: 'val',
+  secondDey: 2,
+  nestedArray: [1,2,3]
 };
 
 // eslint-disable-next-line
@@ -49,7 +55,6 @@ class Examples extends Component {
     return (
       <View style={styles.container}>
         <Heading>react-native-json-tree</Heading>
-        <Text>Sub Text</Text>
         <JSONTree data={exampleJson} />
       </View>
     );

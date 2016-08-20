@@ -1,13 +1,4 @@
 {
-  "name": "examples",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "web": "webpack-dev-server --port 3000 --config web/webpack.config.dev.js --inline --hot --colors --quiet && open http://localhost:3000"
-  },
   "dependencies": {
     "immutable": "3.8.1",
     "react": "15.2.1",
@@ -18,5 +9,15 @@
     "babel-preset-react-native": "1.9.0",
     "babel-plugin-transform-es2015-destructuring": "6.9.0",
     "babel-plugin-transform-object-rest-spread": "6.8.0"
-  }
+  },
+  "name": "examples",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "postinstall": "find node_modules -type f -name .babelrc | grep -v /react-native/ | xargs rm",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "web": "webpack-dev-server --port 3000 --config web/webpack.config.dev.js --inline --hot --colors --quiet && open http://localhost:3000"
+  },
+  "version": "0.0.1"
 }

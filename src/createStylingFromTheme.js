@@ -35,7 +35,7 @@ const getDefaultTheStyling = theme => {
   return {
     tree: {
       backgroundColor: colors.BACKGROUND_COLOR,
-      border: 0,
+      borderWidth: 0,
       marginBottom: 0.5,
       marginLeft: 0.125,
       marginRight: 0,
@@ -50,19 +50,12 @@ const getDefaultTheStyling = theme => {
         paddingRight: 0,
         marginLeft: 0.875,
         paddingLeft: keyPath.length > 1 ? 2.125 : 1.25,
-        // TODO
-        textIndent: -0.5,
-        // TODO
-        wordBreak: 'break-all',
-        wordWrap: 'break-word',
       },
     }),
 
     label: { color: colors.LABEL_COLOR },
 
     valueLabel: {
-      // TODO
-      // margin: '0 0.5 0 0',
       marginBottom: 0.5,
       marginLeft: 0.125,
       marginRight: 0,
@@ -87,12 +80,8 @@ const getDefaultTheStyling = theme => {
       style: {
         ...style,
         marginLeft: 0,
-        // TODO
-        transition: '150ms',
-        transform: expanded ? 'rotateZ(90deg)' : 'rotateZ(0deg)',
-        transformOrigin: '45% 50%',
+        transform: expanded ? [{ rotate: '90deg' }] : [{rotate: '0deg' }],
         position: 'relative',
-        lineHeight: 1.1,
         fontSize: 0.75,
       },
     }),
@@ -100,7 +89,6 @@ const getDefaultTheStyling = theme => {
     arrowContainer: ({ style }, arrowStyle) => ({
       style: {
         ...style,
-        display: 'inline-block',
         paddingRight: 0.5,
         paddingLeft: arrowStyle === 'double' ? 1 : 0,
       },
@@ -129,14 +117,11 @@ const getDefaultTheStyling = theme => {
       margin: 0,
     },
 
-    nestedNodeLabel: ({ style }, keyPath, nodeType, expanded, expandable) => ({
+    nestedNodeLabel: ({ style }) => ({
       style: {
         ...style,
         margin: 0,
         padding: 0,
-        WebkitUserSelect: expandable ? 'inherit' : 'text',
-        MozUserSelect: expandable ? 'inherit' : 'text',
-        cursor: expandable ? 'pointer' : 'default',
       },
     }),
 
@@ -154,21 +139,17 @@ const getDefaultTheStyling = theme => {
       marginRight: '0.3',
     },
 
-    nestedNodeChildren: ({ style }, nodeType, expanded) => ({
+    nestedNodeChildren: ({ style }, nodeType) => ({
       style: {
         ...style,
         padding: 0,
         margin: 0,
-        listStyle: 'none',
-        display: expanded ? 'block' : 'none',
       },
     }),
 
     rootNodeChildren: {
       padding: 0,
       margin: 0,
-      // TODO
-      listStyle: 'none',
     },
   };
 };
