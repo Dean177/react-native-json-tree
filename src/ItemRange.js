@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import JSONArrow from './JSONArrow';
 
@@ -22,22 +22,22 @@ export default class ItemRange extends Component {
     const { styling, from, to, renderChildNodes, nodeType } = this.props;
 
     return (this.state.expanded ?
-      <View {...styling('itemRange', this.state.expanded)}>
-        {renderChildNodes(this.props, from, to)}
-      </View> :
-      <View
-        {...styling('itemRange', this.state.expanded)}
-        onPress={this.handlePress}
-      >
-        <JSONArrow
-          nodeType={nodeType}
-          styling={styling}
-          expanded={false}
+        <View {...styling('itemRange', this.state.expanded)}>
+          {renderChildNodes(this.props, from, to)}
+        </View> :
+        <View
+          {...styling('itemRange', this.state.expanded)}
           onPress={this.handlePress}
-          arrowStyle="double"
-        />
-        {`${from} ... ${to}`}
-      </View>
+        >
+          <JSONArrow
+            nodeType={nodeType}
+            styling={styling}
+            expanded={false}
+            onPress={this.handlePress}
+            arrowStyle="double"
+          />
+          <Text>{`${from} ... ${to}`}</Text>
+        </View>
     );
   }
 
