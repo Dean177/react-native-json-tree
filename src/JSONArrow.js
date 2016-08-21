@@ -1,17 +1,17 @@
 import React, { PropTypes } from 'react';
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
-// TODO touchable
 const JSONArrow = ({ arrowStyle, expanded, nodeType, onPress, styling }) => (
-  <View
-    {...styling('arrowContainer', arrowStyle)}
-    onPress={onPress}
-  >
-    <Text {...styling(['arrow', 'arrowSign'], nodeType, expanded, arrowStyle)}>
-      {'▶'}
-      {arrowStyle === 'double' && <Text {...styling(['arrowSign', 'arrowSignInner'])}>{'▶'}</Text>}
-    </Text>
-  </View>
+  <TouchableOpacity onPress={onPress}>
+    <View {...styling('arrowContainer', arrowStyle)}>
+      <Text {...styling(['arrow', 'arrowSign'], nodeType, expanded, arrowStyle)}>
+        {'▶'}
+      </Text>
+      {arrowStyle === 'double' ?
+        <Text {...styling(['arrowSign', 'arrowSignInner'])}>{'▶'}</Text> :
+        null}
+    </View>
+  </TouchableOpacity>
 );
 
 JSONArrow.propTypes = {

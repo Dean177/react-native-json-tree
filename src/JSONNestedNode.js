@@ -22,7 +22,12 @@ function renderChildNodes(props, from, to) {
 
   const childNodes = [];
 
-  getCollectionEntries(nodeType, data, sortObjectKeys, collectionLimit, from, to).forEach(entry => {
+  // TODO is this undefined?
+  const collectionEntries = getCollectionEntries(nodeType, data, sortObjectKeys, collectionLimit, from, to)
+  if (!collectionEntries) {
+    console.error('collectionEntries is undefiune', collectionEntries);
+  }
+  collectionEntries.forEach(entry => {
     if (entry.to) {
       childNodes.push(
         <ItemRange
@@ -46,8 +51,7 @@ function renderChildNodes(props, from, to) {
           value={postprocessValue(value)}
           circularCache={[...circularCache, value]}
           isCircular={isCircular}
-          hideRoot={false}
-        />
+          hideRoot={false} />
       );
 
       if (node !== false) {
@@ -69,9 +73,7 @@ export default class JSONNestedNode extends React.Component {
     createItemString: PropTypes.func.isRequired,
     styling: PropTypes.func.isRequired,
     collectionLimit: PropTypes.number,
-    keyPath: PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    ).isRequired,
+    keyPath: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
     labelRenderer: PropTypes.func.isRequired,
     shouldExpandNode: PropTypes.func,
     level: PropTypes.number.isRequired,
@@ -144,26 +146,24 @@ export default class JSONNestedNode extends React.Component {
       </View>
     ) : (
       <View {...styling('nestedNode', ...stylingArgs)}>
-        {expandable &&
+        <View style={{ flexDirection: 'row' }}>
+          {expandable &&
           <JSONArrow
             styling={styling}
             nodeType={nodeType}
             expanded={expanded}
-            onPress={this.handlePress}
-          />
-        }
-        <Text
-          {...styling(['label', 'nestedNodeLabel'], ...stylingArgs)}
-          onPress={onPressItemString}
-        >
-          {labelRenderer(...stylingArgs)}
-        </Text>
-        <Text
-          {...styling('nestedNodeItemString', ...stylingArgs)}
-          onPress={onPressItemString}
-        >
-          {renderedItemString}
-        </Text>
+            onPress={this.handlePress} />
+          }
+          <Text
+            {...styling(['label', 'nestedNodeLabel'], ...stylingArgs)}
+            onPress={onPressItemString}>
+            {labelRenderer(...stylingArgs)}
+          </Text>
+          <Text{...styling('nestedNodeItemString', ...stylingArgs)}
+               onPress={onPressItemString}>
+            {renderedItemString}
+          </Text>
+        </View>
         {expanded ?
           <View {...styling('nestedNodeChildren', ...stylingArgs)}>
             {renderedChildren}

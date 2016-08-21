@@ -22,24 +22,22 @@ export default class ItemRange extends Component {
     const { styling, from, to, renderChildNodes, nodeType } = this.props;
 
     return (this.state.expanded ?
-        <View {...styling('itemRange', this.state.expanded)}>
-          {renderChildNodes(this.props, from, to)}
-        </View> :
-        <View
-          {...styling('itemRange', this.state.expanded)}
+      <View {...styling('itemRange', this.state.expanded)}>
+        {renderChildNodes(this.props, from, to)}
+      </View> :
+      <View
+        {...styling('itemRange', this.state.expanded)}
+        onPress={this.handlePress}
+      >
+        <JSONArrow
+          nodeType={nodeType}
+          styling={styling}
+          expanded={false}
           onPress={this.handlePress}
-        >
-          <JSONArrow
-            nodeType={nodeType}
-            styling={styling}
-            expanded={false}
-            onPress={this.handlePress}
-            arrowStyle="double"
-          />
-          <Text>{`${from} ... ${to}`}</Text>
-        </View>
+          arrowStyle="double"
+        />
+        <Text {...styling('itemRangeText', this.state.expanded)}>>{`${from} ... ${to}`}</Text>
+      </View>
     );
   }
-
-
 }

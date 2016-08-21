@@ -35,122 +35,94 @@ const getDefaultTheStyling = theme => {
   return {
     tree: {
       backgroundColor: colors.BACKGROUND_COLOR,
-      borderWidth: 0,
-      marginBottom: 0.5,
-      marginLeft: 0.125,
-      marginRight: 0,
-      marginTop: 0.5,
-      padding: 0,
+      padding: 5,
     },
 
-    value: ({ style }, nodeType, keyPath) => ({
+    value: ({ style }) => ({
       style: {
+        flexDirection: 'row',
+        marginLeft: 10,
         ...style,
-        paddingTop: 0.25,
-        paddingRight: 0,
-        marginLeft: 0.875,
-        paddingLeft: keyPath.length > 1 ? 2.125 : 1.25,
       },
     }),
 
-    label: { color: colors.LABEL_COLOR },
+    label: {
+      color: colors.LABEL_COLOR,
+      flexDirection: 'row',
+    },
 
     valueLabel: {
-      marginBottom: 0.5,
-      marginLeft: 0.125,
-      marginRight: 0,
-      marginTop: 0.5,
+      marginBottom: 8,
     },
 
     valueText: ({ style }, nodeType) => ({
       style: {
-        ...style,
         color: valueColorMap(colors)[nodeType],
+        marginLeft: 5,
+        ...style,
       },
     }),
 
-    itRange: ({ style }, expanded) => ({
+    itemRange: ({ style }, expanded) => ({
       style: {
-        paddingTop: expanded ? 0 : 0.25,
+        paddingTop: expanded ? 5 : 0,
+        paddingLeft: expanded ? 10 : 0,
+      },
+    }),
+
+    itemText: ({ style }, expanded) => ({
+      style: {
+        paddingTop: expanded ? 5 : 5,
+        paddingLeft: expanded ? 10 : 15,
         color: colors.LABEL_COLOR,
       },
     }),
 
     arrow: ({ style }, nodeType, expanded) => ({
       style: {
-        ...style,
+        fontSize: 15,
         marginLeft: 0,
-        transform: expanded ? [{ rotate: '90deg' }] : [{rotate: '0deg' }],
-        position: 'relative',
-        fontSize: 0.75,
+        transform: expanded ? [{ rotate: '90deg' }] : [{ rotate: '0deg' }],
+        ...style,
       },
     }),
 
     arrowContainer: ({ style }, arrowStyle) => ({
       style: {
+        flexDirection: 'row',
+        paddingLeft: arrowStyle === 'double' ? 5 : 0,
+        paddingRight: 3,
         ...style,
-        paddingRight: 0.5,
-        paddingLeft: arrowStyle === 'double' ? 1 : 0,
       },
     }),
 
     arrowSign: { color: colors.ARROW_COLOR },
 
-    arrowSignInner: {
-      position: 'absolute',
-      top: 0,
-      left: -0.4,
-    },
-
     nestedNode: ({ style }, keyPath, nodeType, expanded, expandable) => ({
       style: {
+        marginLeft: keyPath.length > 1 ? 7 : 0,
+        paddingBottom: 5,
+        paddingLeft: expandable ? 0 : 3,
         ...style,
-        position: 'relative',
-        paddingTop: 0.25,
-        marginLeft: keyPath.length > 1 ? 0.875 : 0,
-        paddingLeft: !expandable ? 1.125 : 0,
       },
     }),
 
-    rootNode: {
-      padding: 0,
-      margin: 0,
-    },
+    nestedNodeLabel: ({ style }) => ({ style }),
 
-    nestedNodeLabel: ({ style }) => ({
+    nestedNodeItemString: ({ style }, keyPath, nodeType, expanded) => ({
       style: {
-        ...style,
-        margin: 0,
-        padding: 0,
-      },
-    }),
-
-    nestedNodeItString: ({ style }, keyPath, nodeType, expanded) => ({
-      style: {
-        ...style,
-        paddingLeft: '0.5',
-        cursor: 'default',
         color: expanded ? colors.ITEM_STRING_EXPANDED_COLOR : colors.ITEM_STRING_COLOR,
-      },
-    }),
-
-    nestedNodeItType: {
-      marginLeft: '0.3',
-      marginRight: '0.3',
-    },
-
-    nestedNodeChildren: ({ style }, nodeType) => ({
-      style: {
+        marginLeft: 5,
         ...style,
-        padding: 0,
-        margin: 0,
       },
     }),
 
-    rootNodeChildren: {
-      padding: 0,
-      margin: 0,
-    },
+    nestedNodeChildren: ({ style }) => ({
+      style: {
+        marginLeft: 10,
+        ...style,
+      },
+    }),
   };
 };
 

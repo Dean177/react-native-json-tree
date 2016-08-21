@@ -5,41 +5,42 @@ import JSONTree from 'react-native-json-tree';
 import Heading from './Heading';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
+  container: { flex: 1 },
+  title: { margin: 10 },
 });
 
 const exampleJson = {
   array: [1, 2, 3],
   emptyArray: [],
+  emptyObject: {},
   bool: true,
   date: new Date(),
-  object: {
+  smallObject: {
+    yes: false,
+    zero: 1,
+    empty: 'string',
+  },
+  nestedObject: {
+    baz: undefined,
+    clazz: function User() {},
     foo: {
-      bar: 'baz',
       nested: {
-        moreNested: {
-          evenMoreNested: {
-            veryNested: {
-              insanelyNested: {
-                ridiculouslyDeepValue: 'Hello',
-                levels: 9,
-                tooMany: true,
-              },
-            },
-          },
+        deepValue: 'Hello',
+        levels: 2,
+        tooMany: true,
+        nested: {
+          deeper: {
+            some: {
+              very: 'deep value',
+            }
+          }
         },
       },
     },
-    baz: undefined,
-    func: function User() {},
   },
-  emptyObject: {},
   immutable: Map({ key: 'value' }), // eslint-disable-line new-cap
   hugeArray: Array.from({ length: 100 }).map((_, i) => `item #${i}`),
-  longString: 'Loremipsumdolorsitamet,consecteturadipiscingelit.Namtempusipsumutfelisdignissimauctor',
+  longString: 'Loremipsumdolorsitamet,consecteturadipiscingelit.Namtempusipsumutfelisdig',
 };
 
 
