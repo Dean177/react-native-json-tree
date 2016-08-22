@@ -1,4 +1,4 @@
-import { createStyling } from 'react-base16-styling';
+import { createStyling } from '../lib/react-base16-styling';
 import solarized from './themes/solarized';
 
 const colorMap = theme => ({
