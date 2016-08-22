@@ -62,5 +62,5 @@
     "bak-prepublish": "npm run lint && npm run test",
     "start": "cd examples && npm start"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
