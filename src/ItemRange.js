@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Text, View } from 'react-native';
-import shouldPureComponentUpdate from 'react-pure-render/function';
+import shallowCompare from 'react-addons-shallow-compare';
 import JSONArrow from './JSONArrow';
 
 export default class ItemRange extends Component {
@@ -14,7 +14,9 @@ export default class ItemRange extends Component {
 
   state = { expanded: false };
 
-  shouldComponentUpdate = shouldPureComponentUpdate;
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
 
   handlePress = () => this.setState({ expanded: !this.state.expanded });
 

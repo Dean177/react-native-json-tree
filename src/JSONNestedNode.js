@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Text, View } from 'react-native';
-import shouldPureComponentUpdate from 'react-pure-render/function';
+import shallowCompare from 'react-addons-shallow-compare';
 import JSONArrow from './JSONArrow';
 import getCollectionEntries from './getCollectionEntries';
 import JSONNode from './JSONNode';
@@ -101,7 +101,9 @@ export default class JSONNestedNode extends React.Component {
     };
   }
 
-  shouldComponentUpdate = shouldPureComponentUpdate;
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
 
   handlePress = () => this.setState({ expanded: !this.state.expanded });
 

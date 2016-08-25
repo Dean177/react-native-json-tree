@@ -10,8 +10,8 @@
     "babel-runtime": "6.11.6",
     "enzyme": "2.4.1",
     "immutable": "3.8.1",
-    "react-base16-styling": "0.4.1",
-    "react-pure-render": "1.0.2"
+    "react-addons-shallow-compare": "15.3.1",
+    "react-base16-styling": "github:dean177/react-base16-styling"
   },
   "description": "React Native JSON Viewer Component, based on react-json-tree",
   "devDependencies": {
@@ -21,11 +21,11 @@
     "babel-plugin-transform-object-rest-spread": "6.8.0",
     "babel-preset-react-native": "1.9.0",
     "babel-preset-stage-1": "6.5.0",
-    "eslint": "3.3.0",
+    "eslint": "3.3.1",
     "eslint-config-airbnb": "10.0.1",
-    "eslint-plugin-import": "1.13.0",
+    "eslint-plugin-import": "1.14.0",
     "eslint-plugin-jsx-a11y": "2.1.0",
-    "eslint-plugin-react": "6.1.0",
+    "eslint-plugin-react": "6.1.2",
     "expect": "1.20.2",
     "isparta": "4.0.0",
     "mocha": "3.0.2",
@@ -33,7 +33,7 @@
     "react-addons-test-utils": "15.2.1",
     "react-dom": "15.2.1",
     "react-native": "0.30.0",
-    "react-native-mock": "0.2.5"
+    "react-native-mock": "0.2.6"
   },
   "homepage": "https://github.com/Dean177/react-native-json-tree",
   "keywords": [
@@ -62,5 +62,5 @@
     "bak-prepublish": "npm run lint && npm run test",
     "start": "cd examples && npm start"
   },
-  "version": "0.0.1"
+  "version": "0.0.5"
 }
