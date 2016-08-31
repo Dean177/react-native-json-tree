@@ -24,7 +24,7 @@
     "eslint": "3.3.1",
     "eslint-config-airbnb": "10.0.1",
     "eslint-plugin-import": "1.14.0",
-    "eslint-plugin-jsx-a11y": "2.1.0",
+    "eslint-plugin-jsx-a11y": "2.2.1",
     "eslint-plugin-react": "6.1.2",
     "expect": "1.20.2",
     "isparta": "4.0.0",
