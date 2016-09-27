@@ -32,7 +32,7 @@
     "react": "15.2.1",
     "react-addons-test-utils": "15.2.1",
     "react-dom": "15.2.1",
-    "react-native": "0.30.0",
+    "react-native": "0.34.1",
     "react-native-mock": "0.2.6"
   },
   "homepage": "https://github.com/Dean177/react-native-json-tree",
