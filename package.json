@@ -15,7 +15,7 @@
   },
   "description": "React Native JSON Viewer Component, based on react-json-tree",
   "devDependencies": {
-    "babel-core": "6.13.2",
+    "babel-core": "6.17.0",
     "babel-eslint": "6.1.2",
     "babel-plugin-transform-es2015-destructuring": "6.9.0",
     "babel-plugin-transform-object-rest-spread": "6.8.0",
