@@ -48,7 +48,7 @@
   "name": "react-native-json-tree",
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0-0",
-    "react-native": "^0.32.0"
+    "react-native": ">=0.32.0"
   },
   "repository": {
     "type": "git",
