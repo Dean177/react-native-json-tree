@@ -10,7 +10,7 @@
     "babel-runtime": "6.11.6",
     "enzyme": "2.4.1",
     "immutable": "3.8.1",
-    "react-addons-shallow-compare": "15.3.1",
+    "react-addons-shallow-compare": "15.4.1",
     "react-base16-styling": "github:dean177/react-base16-styling"
   },
   "description": "React Native JSON Viewer Component, based on react-json-tree",
