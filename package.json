@@ -29,7 +29,7 @@
     "immutable": "3.8.1",
     "mocha": "3.1.2",
     "react": "15.4.2",
-    "react-addons-test-utils": "15.4.1",
+    "react-addons-test-utils": "15.4.2",
     "react-dom": "15.4.2",
     "react-native": "0.38.0",
     "react-native-mock": "0.2.8"
