@@ -18,7 +18,7 @@ function getEntries(type, collection, sortObjectKeys, from = 0, to = Infinity) {
   if (type === 'Object') {
     let keys = Object.getOwnPropertyNames(collection);
 
-    if (typeof sortObjectKeys !== 'undefined') {
+    if (typeof sortObjectKeys === 'function') {
       keys.sort(sortObjectKeys);
     }
 
@@ -32,24 +32,25 @@ function getEntries(type, collection, sortObjectKeys, from = 0, to = Infinity) {
       entries: collection.slice(from, to + 1).map((val, idx) => ({ key: idx + from, value: val })),
     };
   } else {
-    let idx = 0;
+    let index = 0;
     const entries = [];
     let done = true;
 
     const isMap = isIterableMap(collection);
 
     for (const item of collection) {
-      if (idx > to) {
+      if (index > to) {
         done = false;
         break;
-      } if (from <= idx) {
+      }
+      if (from <= index) {
         if (isMap && Array.isArray(item)) {
           entries.push({ key: item[0], value: item[1] });
         } else {
-          entries.push({ key: idx, value: item });
+          entries.push({ key: index, value: item });
         }
       }
-      idx++;
+      index += 1;
     }
 
     res = {
@@ -74,7 +75,7 @@ function getRanges(from, to, limit) {
 }
 
 export default function getCollectionEntries(
-  type, collection, sortObjectKeys, limit, from = 0, to = Infinity
+  type, collection, sortObjectKeys, limit, from = 0, to = Infinity,
 ) {
   const getEntriesBound = getEntries.bind(null, type, collection, sortObjectKeys);
 
@@ -100,9 +101,9 @@ export default function getCollectionEntries(
       ...getRanges(from + limit, (from - 1) + (2 * limit), limit),
     ] : entries;
   } else {
-    limitedEntries = isSubset ?
-      getRanges(from, to, limit) :
-      [
+    limitedEntries = isSubset
+      ? getRanges(from, to, limit)
+      : [
         ...getEntriesBound(0, limit - 5).entries,
         ...getRanges(limit - 4, length - 5, limit),
         ...getEntriesBound(length - 4, length - 1).entries,

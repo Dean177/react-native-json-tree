@@ -24,15 +24,15 @@ const JSONValueNode = ({
 );
 
 JSONValueNode.propTypes = {
-  nodeType: PropTypes.string.isRequired,
-  styling: PropTypes.func.isRequired,
-  labelRenderer: PropTypes.func.isRequired,
   keyPath: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   ).isRequired,
-  valueRenderer: PropTypes.func.isRequired,
+  labelRenderer: PropTypes.func.isRequired,
+  nodeType: PropTypes.string.isRequired,
+  styling: PropTypes.func.isRequired,
   value: PropTypes.any,
   valueGetter: PropTypes.func,
+  valueRenderer: PropTypes.func.isRequired,
 };
 
 JSONValueNode.defaultProps = { valueGetter: value => value };

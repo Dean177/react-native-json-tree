@@ -1,0 +1,24 @@
+{
+  "name": "Example",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "flow": "0.2.3",
+    "flow-bin": "0.40.0",
+    "immutable": "3.8.1",
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.43.2",
+    "react-native-json-tree": "file:.."
+  },
+  "devDependencies": {
+    "babel-preset-react-native": "1.9.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

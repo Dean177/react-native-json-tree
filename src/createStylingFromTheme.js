@@ -2,34 +2,34 @@ import { createStyling } from '../lib/react-base16-styling';
 import solarized from './themes/solarized';
 
 const colorMap = theme => ({
-  BACKGROUND_COLOR: theme.base00,
-  TEXT_COLOR: theme.base07,
-  STRING_COLOR: theme.base0B,
-  DATE_COLOR: theme.base0B,
-  NUMBER_COLOR: theme.base09,
-  BOOLEAN_COLOR: theme.base09,
-  NULL_COLOR: theme.base08,
-  UNDEFINED_COLOR: theme.base08,
-  FUNCTION_COLOR: theme.base08,
-  SYMBOL_COLOR: theme.base08,
-  LABEL_COLOR: theme.base0D,
   ARROW_COLOR: theme.base0D,
+  BACKGROUND_COLOR: theme.base00,
+  BOOLEAN_COLOR: theme.base09,
+  DATE_COLOR: theme.base0B,
+  FUNCTION_COLOR: theme.base08,
   ITEM_STRING_COLOR: theme.base0B,
   ITEM_STRING_EXPANDED_COLOR: theme.base03,
+  LABEL_COLOR: theme.base0D,
+  NUMBER_COLOR: theme.base09,
+  NULL_COLOR: theme.base08,
+  STRING_COLOR: theme.base0B,
+  SYMBOL_COLOR: theme.base08,
+  TEXT_COLOR: theme.base07,
+  UNDEFINED_COLOR: theme.base08,
 });
 
 const valueColorMap = colors => ({
-  String: colors.STRING_COLOR,
-  Date: colors.DATE_COLOR,
-  Number: colors.NUMBER_COLOR,
   Boolean: colors.BOOLEAN_COLOR,
-  Null: colors.NULL_COLOR,
-  Undefined: colors.UNDEFINED_COLOR,
+  Date: colors.DATE_COLOR,
   Function: colors.FUNCTION_COLOR,
+  Number: colors.NUMBER_COLOR,
+  Null: colors.NULL_COLOR,
+  String: colors.STRING_COLOR,
   Symbol: colors.SYMBOL_COLOR,
+  Undefined: colors.UNDEFINED_COLOR,
 });
 
-const getDefaultTheStyling = theme => {
+const getDefaultTheStyling = (theme) => {
   const colors = colorMap(theme);
 
   return {
@@ -65,16 +65,16 @@ const getDefaultTheStyling = theme => {
 
     itemRange: ({ style }, expanded) => ({
       style: {
-        paddingTop: expanded ? 5 : 0,
         paddingLeft: expanded ? 10 : 0,
+        paddingTop: expanded ? 5 : 0,
       },
     }),
 
     itemText: ({ style }, expanded) => ({
       style: {
-        paddingTop: expanded ? 5 : 5,
-        paddingLeft: expanded ? 10 : 15,
         color: colors.LABEL_COLOR,
+        paddingLeft: expanded ? 10 : 15,
+        paddingTop: expanded ? 5 : 5,
       },
     }),
 

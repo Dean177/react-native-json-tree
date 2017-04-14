@@ -26,7 +26,7 @@ function checkLegacyTheming(theme, props) {
       theme = { ...theme };
     }
 
-    deprecatedStylingMethods.forEach(name => {
+    deprecatedStylingMethods.forEach((name) => {
       // eslint-disable-next-line no-console
       console.error(`Styling method "${name}" is deprecated, use the "theme" property instead`);
 
@@ -53,11 +53,11 @@ class JSONTree extends React.Component {
       PropTypes.string,
     ]).isRequired,
     hideRoot: PropTypes.bool,
-    theme: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     invertTheme: PropTypes.bool,
     keyPath: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     postprocessValue: PropTypes.func,
     sortObjectKeys: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    theme: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   };
 
   static defaultProps = {
@@ -71,6 +71,7 @@ class JSONTree extends React.Component {
     isCustomNode: () => false,
     collectionLimit: 50,
     invertTheme: true,
+    sortObjectKeys: true,
   };
 
   render() {
@@ -81,7 +82,7 @@ class JSONTree extends React.Component {
       hideRoot,
       theme,
       invertTheme,
-      ...rest,
+      ...rest
     } = this.props;
 
     const styling = createStylingFromTheme(checkLegacyTheming(theme, rest), invertTheme);
@@ -94,7 +95,8 @@ class JSONTree extends React.Component {
           postprocessValue={postprocessValue}
           styling={styling}
           value={postprocessValue(value)}
-          {...rest } />
+          {...rest}
+        />
       </View>
     );
   }

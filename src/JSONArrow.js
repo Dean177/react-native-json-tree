@@ -15,11 +15,11 @@ const JSONArrow = ({ arrowStyle, expanded, nodeType, onPress, styling }) => (
 );
 
 JSONArrow.propTypes = {
-  styling: PropTypes.func.isRequired,
   arrowStyle: PropTypes.oneOf(['single', 'double']),
   expanded: PropTypes.bool.isRequired,
   nodeType: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
+  styling: PropTypes.func.isRequired,
 };
 
 JSONArrow.defaultProps = {

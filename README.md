@@ -28,7 +28,7 @@ const json = {
 
 ![](http://cl.ly/image/3f2C2k2t3D0o/screenshot%202015-08-26%20at%2010.24.12%20AM.png)
 
-Check out [examples](examples) directory for more details.
+Check out the [Example](Example) directory.
 
 ### Theming
 
@@ -95,15 +95,16 @@ You can pass `getItemString` to customize the way arrays, objects, and iterable 
 By default, it'll be:
 
 ```jsx
-<JSONTree getItemString={(type, data, itemType, itemString)
-  => <Text>{itemType} {itemString}</Text>}
+<JSONTree getItemString={(type, data, itemType, itemString) =>
+  <Text>{itemType} {itemString}</Text>}
+/>
 ```
 
 But if you pass the following:
 
 ```jsx
-const getItemString = (type, data, itemType, itemString)
-  => (<Text> // {type}</Text>);
+const getItemString = (type, data, itemType, itemString) =>
+  <Text>{type}</Text>;
 ```
 
 Then the preview of child elements now look like this:
@@ -116,8 +117,8 @@ You can pass the following properties to customize rendered labels and values:
 
 ```jsx
 <JSONTree
-    labelRenderer={raw => <Text style={{ fontWeight: 'bold' }}>{raw}</Text>}
-    valueRenderer={raw => <Text style={{ fontStyle: 'italic' }}>{raw}</Text>}
+  labelRenderer={raw => <Text style={{ fontWeight: 'bold' }}>{raw}</Text>}
+  valueRenderer={raw => <Text style={{ fontStyle: 'italic' }}>{raw}</Text>}
 />
 ```
 
@@ -127,16 +128,13 @@ For `labelRenderer`, you can provide a full path - [see this PR](https://github.
 
 #### More Options
 
-- `shouldExpandNode: function(keyName, data, level)` - determines if node should be expanded (root is expanded by default)
-- `hideRoot: Boolean` - if `true`, the root node is hidden.
-- `sortObjectKeys: Boolean | function(a, b)` - sorts object keys with compare function (optional). Isn't applied to iterable maps like `Immutable.Map`.
+- `shouldExpandNode: (keyName, data, level) => boolean` - determines if node should be expanded (root is expanded by default)
+- `hideRoot: boolean` - if `true`, the root node is hidden.
+- `sortObjectKeys: boolean | (a, b) => number` - sorts object keys with compare function (optional). Isn't applied to iterable maps like `Immutable.Map`.
 
 ### Credits
 
 - [alexkuz](https://github.com/alexkuz/) for [react-json-tree](https://github.com/alexkuz/react-json-tree)
-- All credits to [Dave Vedder](http://www.eskimospy.com/) ([veddermatic@gmail.com](mailto:veddermatic@gmail.com)), who wrote the original code as [JSONViewer](https://bitbucket.org/davevedder/react-json-viewer/).
-- Extracted from [redux-devtools](https://github.com/gaearon/redux-devtools), which contained ES6 + inline style port of [JSONViewer](https://bitbucket.org/davevedder/react-json-viewer/) by [Daniele Zannotti](http://www.github.com/dzannotti) ([dzannotti@me.com](mailto:dzannotti@me.com))
-- [Iterable support](https://github.com/gaearon/redux-devtools/pull/79) thanks to [Daniel K](https://github.com/FredyC).
 
 ### License
 

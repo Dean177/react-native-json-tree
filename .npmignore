@@ -1,6 +1,10 @@
 .DS_Store
 *.log
-test
+.eslintrc
+.idea
+Example
 examples
-coverage
+node_modules
 npm-debug.log
+test
+yarn.lock

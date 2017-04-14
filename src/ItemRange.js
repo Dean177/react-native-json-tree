@@ -1,9 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { Text, View } from 'react-native';
-import shallowCompare from 'react-addons-shallow-compare';
 import JSONArrow from './JSONArrow';
 
-export default class ItemRange extends Component {
+export default class ItemRange extends PureComponent {
   static propTypes = {
     styling: PropTypes.func.isRequired,
     from: PropTypes.number.isRequired,
@@ -13,10 +12,6 @@ export default class ItemRange extends Component {
   };
 
   state = { expanded: false };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   handlePress = () => this.setState({ expanded: !this.state.expanded });
 
@@ -38,7 +33,7 @@ export default class ItemRange extends Component {
           onPress={this.handlePress}
           arrowStyle="double"
         />
-        <Text {...styling('itemRangeText', this.state.expanded)}>>{`${from} ... ${to}`}</Text>
+        <Text {...styling('itemRangeText', this.state.expanded)}>{`> ${from} ... ${to}`}</Text>
       </View>
     );
   }

@@ -12,11 +12,11 @@ function createItemString(data) {
 const JSONObjectNode = ({ data, ...props }) => (
   <JSONNestedNode
     {...props}
+    createItemString={createItemString}
     data={data}
+    expandable={Object.getOwnPropertyNames(data).length > 0}
     nodeType="Object"
     nodeTypeIndicator="{}"
-    createItemString={createItemString}
-    expandable={Object.getOwnPropertyNames(data).length > 0}
   />
 );
 

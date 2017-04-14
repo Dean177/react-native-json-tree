@@ -7,13 +7,13 @@ import JSONValueNode from './JSONValueNode';
 
 const JSONNode = ({
   getItemString,
+  isCustomNode,
   keyPath,
   labelRenderer,
   styling,
   value,
   valueRenderer,
-  isCustomNode,
-  ...rest,
+  ...rest
 }) => {
   const nodeType = isCustomNode(value) ? 'Custom' : objType(value);
 
@@ -67,12 +67,12 @@ const JSONNode = ({
 
 JSONNode.propTypes = {
   getItemString: PropTypes.func.isRequired,
+  isCustomNode: PropTypes.func.isRequired,
   keyPath: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
   labelRenderer: PropTypes.func.isRequired,
   styling: PropTypes.func.isRequired,
   value: PropTypes.any,
   valueRenderer: PropTypes.func.isRequired,
-  isCustomNode: PropTypes.func.isRequired,
 };
 
 export default JSONNode;

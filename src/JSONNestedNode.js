@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Text, View } from 'react-native';
-import shallowCompare from 'react-addons-shallow-compare';
 import JSONArrow from './JSONArrow';
 import getCollectionEntries from './getCollectionEntries';
 import JSONNode from './JSONNode';
@@ -21,15 +20,17 @@ function renderChildNodes(props, from, to) {
   } = props;
 
   const childNodes = [];
-
-  // TODO is this undefined?
-  const collectionEntries = getCollectionEntries(nodeType, data, sortObjectKeys, collectionLimit, from, to)
-  if (!collectionEntries) {
-    console.error('collectionEntries is undefiune', collectionEntries);
-  }
-  collectionEntries.forEach(entry => {
+  const collectionEntries = getCollectionEntries(
+    nodeType,
+    data,
+    sortObjectKeys,
+    collectionLimit,
+    from,
+    to,
+  );
+  collectionEntries.forEach((entry) => {
     if (entry.to) {
-      childNodes.push(
+      childNodes.push((
         <ItemRange
           {...props}
           key={`ItemRange--${entry.from}-${entry.to}`}
@@ -37,7 +38,7 @@ function renderChildNodes(props, from, to) {
           to={entry.to}
           renderChildNodes={renderChildNodes}
         />
-      );
+      ));
     } else {
       const { key, value } = entry;
       const isCircular = circularCache.indexOf(value) !== -1;
@@ -51,7 +52,8 @@ function renderChildNodes(props, from, to) {
           value={postprocessValue(value)}
           circularCache={[...circularCache, value]}
           isCircular={isCircular}
-          hideRoot={false} />
+          hideRoot={false}
+        />
       );
 
       if (node !== false) {
@@ -63,46 +65,48 @@ function renderChildNodes(props, from, to) {
   return childNodes;
 }
 
-export default class JSONNestedNode extends React.Component {
+export default class JSONNestedNode extends React.PureComponent {
   static propTypes = {
-    getItemString: PropTypes.func.isRequired,
-    nodeTypeIndicator: PropTypes.any,
-    nodeType: PropTypes.string.isRequired,
-    data: PropTypes.any,
-    hideRoot: PropTypes.bool.isRequired,
     createItemString: PropTypes.func.isRequired,
-    styling: PropTypes.func.isRequired,
     collectionLimit: PropTypes.number,
-    keyPath: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])).isRequired,
-    labelRenderer: PropTypes.func.isRequired,
-    shouldExpandNode: PropTypes.func,
-    level: PropTypes.number.isRequired,
-    sortObjectKeys: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-    isCircular: PropTypes.bool,
+    data: PropTypes.any,
     expandable: PropTypes.bool,
+    getItemString: PropTypes.func.isRequired,
+    hideRoot: PropTypes.bool.isRequired,
+    isCircular: PropTypes.bool,
+    keyPath: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])).isRequired,
+    labelRenderer: PropTypes.func.isRequired,
+    level: PropTypes.number.isRequired,
+    nodeType: PropTypes.string.isRequired,
+    nodeTypeIndicator: PropTypes.any,
+    shouldExpandNode: PropTypes.func,
+    sortObjectKeys: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+    styling: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    data: [],
     circularCache: [],
-    level: 0,
+    data: [],
     expandable: true,
+    level: 0,
   };
 
   constructor(props) {
     super(props);
 
     // calculate individual node expansion if necessary
-    const expanded = props.shouldExpandNode && !props.isCircular ?
-      props.shouldExpandNode(props.keyPath, props.data, props.level) : false;
-    this.state = {
-      expanded,
-      createdChildNodes: false,
-    };
-  }
+    const expanded =
+      props.shouldExpandNode &&
+      !props.isCircular &&
+      props.shouldExpandNode(props.keyPath, props.data, props.level);
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
+    this.state = {
+      createdChildNodes: false,
+      expanded,
+    };
   }
 
   handlePress = () => this.setState({ expanded: !this.state.expanded });
@@ -121,7 +125,7 @@ export default class JSONNestedNode extends React.Component {
       labelRenderer,
       expandable,
     } = this.props;
-    const expanded = this.state.expanded;
+    const { expanded } = this.state;
     const renderedChildren = expanded || (hideRoot && this.props.level === 0) ?
       renderChildNodes({ ...this.props, level: this.props.level + 1 }) : null;
 
@@ -134,7 +138,7 @@ export default class JSONNestedNode extends React.Component {
       nodeType,
       data,
       itemType,
-      createItemString(data, collectionLimit)
+      createItemString(data, collectionLimit),
     );
     const stylingArgs = [keyPath, nodeType, expanded, expandable];
 
@@ -150,19 +154,23 @@ export default class JSONNestedNode extends React.Component {
       <View {...styling('nestedNode', ...stylingArgs)}>
         <View style={{ flexDirection: 'row' }}>
           {expandable &&
-          <JSONArrow
-            styling={styling}
-            nodeType={nodeType}
-            expanded={expanded}
-            onPress={this.handlePress} />
+            <JSONArrow
+              styling={styling}
+              nodeType={nodeType}
+              expanded={expanded}
+              onPress={this.handlePress}
+            />
           }
           <Text
             {...styling(['label', 'nestedNodeLabel'], ...stylingArgs)}
-            onPress={onPressItemString}>
+            onPress={onPressItemString}
+          >
             {labelRenderer(...stylingArgs)}
           </Text>
-          <Text{...styling('nestedNodeItemString', ...stylingArgs)}
-               onPress={onPressItemString}>
+          <Text
+            {...styling('nestedNodeItemString', ...stylingArgs)}
+            onPress={onPressItemString}
+          >
             {renderedItemString}
           </Text>
         </View>
@@ -170,7 +178,8 @@ export default class JSONNestedNode extends React.Component {
           <View {...styling('nestedNodeChildren', ...stylingArgs)}>
             {renderedChildren}
           </View> :
-          null}
+          null
+        }
       </View>
     );
   }
