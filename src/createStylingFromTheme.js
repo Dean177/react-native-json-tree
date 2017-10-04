@@ -1,4 +1,4 @@
-import { createStyling } from '../lib/react-base16-styling';
+import { createStyling } from 'react-base16-styling';
 import solarized from './themes/solarized';
 
 const colorMap = theme => ({
@@ -29,8 +29,8 @@ const valueColorMap = colors => ({
   Undefined: colors.UNDEFINED_COLOR,
 });
 
-const getDefaultTheStyling = (theme) => {
-  const colors = colorMap(theme);
+const getStylingFromBase16 = (base16Theme) => {
+  const colors = colorMap(base16Theme);
 
   return {
     tree: {
@@ -126,6 +126,8 @@ const getDefaultTheStyling = (theme) => {
   };
 };
 
-export default createStyling(getDefaultTheStyling, {
+const createStylingFromTheme = createStyling(getStylingFromBase16, {
   defaultBase16: solarized,
 });
+
+export default createStylingFromTheme;

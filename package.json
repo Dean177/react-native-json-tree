@@ -3,19 +3,17 @@
   "bugs": {
     "url": "https://github.com/Dean177/react-native-json-tree/issues"
   },
-  "contributors": [],
+  "contributors": [
+    "jsdario",
+    "Swaagie"
+  ],
   "dependencies": {
-    "react-base16-styling": "^0.5.3"
+    "react-base16-styling": "github:dean177/react-base16-styling#fbc6593"
   },
-  "description": "React Native JSON Viewer Component, based on react-json-tree",
+  "description": "React Native JSON viewing component, based on react-json-tree",
   "devDependencies": {
-    "babel-core": "6.24.1",
     "babel-eslint": "^7.2.2",
-    "babel-plugin-transform-runtime": "6.23.0",
-    "babel-preset-es2015": "6.24.1",
-    "babel-preset-react-native": "1.9.1",
-    "babel-preset-stage-1": "6.24.1",
-    "babel-runtime": "6.23.0",
+    "babel-preset-react-native": "4.0.0",
     "enzyme": "^2.8.2",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "14.1.0",
@@ -24,11 +22,9 @@
     "eslint-plugin-react": "6.10.3",
     "expect": "1.20.2",
     "immutable": "3.8.1",
-    "jest": "^19.0.2",
-    "react": "16.0.0-alpha.6",
-    "react-addons-test-utils": "16.0.0-alpha.3",
-    "react-dom": "16.0.0-alpha.6",
-    "react-native": "0.43.3"
+    "jest": "21.2.1",
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.48.4"
   },
   "homepage": "https://github.com/Dean177/react-native-json-tree",
   "keywords": [
@@ -42,7 +38,7 @@
   "main": "src/index.js",
   "name": "react-native-json-tree",
   "peerDependencies": {
-    "react": ">=16.0.0-alpha.6",
+    "react": "15.x || >=16.0.0-alpha.6",
     "react-native": ">=0.43.2"
   },
   "repository": {
@@ -51,12 +47,9 @@
   },
   "scripts": {
     "flow": "flow",
-    "lint": "eslint --max-warnings=0 src test examples",
+    "lint": "eslint --max-warnings=0 src test Example",
     "test": "NODE_ENV=test jest",
-    "test:watch": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive --watch",
-    "test:cov": "babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- --recursive",
-    "bak-prepublish": "npm run lint && npm run test",
-    "start": "cd examples && npm start"
+    "start": "cd Examples && npm start"
   },
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

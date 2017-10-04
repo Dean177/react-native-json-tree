@@ -2,8 +2,7 @@
 *.log
 .eslintrc
 .idea
-Example
-examples
+Example/
 node_modules
 npm-debug.log
 test
