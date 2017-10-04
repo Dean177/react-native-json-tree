@@ -8,6 +8,7 @@
     "Swaagie"
   ],
   "dependencies": {
+    "prop-types": "^15.6.0",
     "react-base16-styling": "github:dean177/react-base16-styling#fbc6593"
   },
   "description": "React Native JSON viewing component, based on react-json-tree",
