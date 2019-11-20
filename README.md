@@ -131,6 +131,7 @@ For `labelRenderer`, you can provide a full path - [see this PR](https://github.
 - `shouldExpandNode: (keyName, data, level) => boolean` - determines if node should be expanded (root is expanded by default)
 - `hideRoot: boolean` - if `true`, the root node is hidden.
 - `sortObjectKeys: boolean | (a, b) => number` - sorts object keys with compare function (optional). Isn't applied to iterable maps like `Immutable.Map`.
+- `copyValue: boolean` - if `true`, the value of the JSON leaves (values).
 
 ### Credits
 

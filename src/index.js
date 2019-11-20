@@ -59,6 +59,7 @@ class JSONTree extends React.Component {
     postprocessValue: PropTypes.func,
     sortObjectKeys: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     theme: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    copyValue: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -73,6 +74,7 @@ class JSONTree extends React.Component {
     collectionLimit: 50,
     invertTheme: true,
     sortObjectKeys: true,
+    copyValue: false,
   };
 
   render() {
@@ -83,6 +85,7 @@ class JSONTree extends React.Component {
       hideRoot,
       theme,
       invertTheme,
+      copyValue,
       ...rest
     } = this.props;
 
@@ -96,6 +99,7 @@ class JSONTree extends React.Component {
           postprocessValue={postprocessValue}
           styling={styling}
           value={postprocessValue(value)}
+          copyValue={copyValue}
           {...rest}
         />
       </View>
