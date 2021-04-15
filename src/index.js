@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, View } from 'react-native';
-import JSONNode from './JSONNode';
+import { JSONNode } from './Nodes';
 import createStylingFromTheme from './createStylingFromTheme';
 
 const identity = value => value;
@@ -42,6 +42,7 @@ function checkLegacyTheming(theme, props) {
 
   return theme;
 }
+
 /* eslint-enable no-param-reassign */
 
 class JSONTree extends React.Component {

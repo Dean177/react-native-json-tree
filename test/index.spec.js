@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import JSONTree from '../src/index';
-import JSONNode from '../src/JSONNode';
+import { JSONNode } from '../src/Nodes';
 
 describe('JSONTree', () => {
   const BASIC_DATA = { a: 1, b: 'c' };
