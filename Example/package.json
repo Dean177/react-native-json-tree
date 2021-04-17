@@ -1,24 +1,24 @@
 {
-  "name": "Example",
-  "version": "1.0.0",
-  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "android": "node node_modules/react-native/local-cli/cli.js run-android",
-    "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
   },
   "dependencies": {
-    "flow": "0.2.3",
-    "flow-bin": "0.40.0",
+    "expo": "~41.0.0",
+    "expo-status-bar": "~1.0.4",
     "immutable": "3.8.1",
-    "react": "16.0.0-alpha.6",
-    "react-native": "0.43.2",
-    "react-native-json-tree": "file:.."
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
+    "react-native-json-tree": "file:..",
+    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
-    "babel-preset-react-native": "1.9.1"
+    "@babel/core": "^7.9.0"
   },
-  "jest": {
-    "preset": "react-native"
-  }
+  "private": true
 }

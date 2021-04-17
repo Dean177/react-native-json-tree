@@ -10,24 +10,19 @@
     "Swaagie"
   ],
   "dependencies": {
-    "prop-types": "^15.6.0",
+    "prop-types": "^15.7.2",
     "react-base16-styling": "github:dean177/react-base16-styling#fbc6593"
   },
   "description": "React Native JSON viewing component, based on react-json-tree",
   "devDependencies": {
-    "babel-eslint": "^7.2.2",
-    "babel-preset-react-native": "4.0.0",
-    "enzyme": "^2.8.2",
-    "eslint": "3.19.0",
-    "eslint-config-airbnb": "14.1.0",
-    "eslint-plugin-import": "2.2.0",
-    "eslint-plugin-jsx-a11y": "4.0.0",
-    "eslint-plugin-react": "6.10.3",
-    "expect": "1.20.2",
+    "babel-preset-react-native": "4.0.1",
+    "enzyme": "^3.11.0",
     "immutable": "3.8.1",
-    "jest": "21.2.1",
-    "react": "16.0.0-alpha.12",
-    "react-native": "0.48.4"
+    "jest": "26.6.3",
+    "madge": "4.0.2",
+    "prettier": "2.2.1",
+    "react": "17.0.2",
+    "react-native": "0.64.0"
   },
   "homepage": "https://github.com/Dean177/react-native-json-tree",
   "keywords": [
@@ -49,10 +44,10 @@
     "url": "https://github.com/Dean177/react-native-json-tree.git"
   },
   "scripts": {
-    "flow": "flow",
     "lint": "eslint --max-warnings=0 src test Example",
     "test": "NODE_ENV=test jest",
-    "start": "cd Examples && npm start"
+    "start": "cd Examples && npm start",
+    "circular-dependency-check": "madge ./src/index.js --circular"
   },
-  "version": "1.2.0"
+  "version": "1.2.1"
 }

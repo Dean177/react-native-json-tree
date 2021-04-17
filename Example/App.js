@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import JSONTree from 'react-native-json-tree';
 import Heading from './Heading';
 
@@ -43,19 +43,17 @@ const exampleJson = {
   longString: 'Loremipsumdolorsitamet,consecteturadipiscingelit.Namtempusipsumutfelisdig',
 };
 
-
-// eslint-disable-next-line
-class Examples extends Component {
+class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <ScrollView>
           <Heading>react-native-json-tree</Heading>
           <JSONTree data={exampleJson} />
         </ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }
 
-export default Examples;
+export default App;
