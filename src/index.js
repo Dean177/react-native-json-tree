@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 import { Text, View } from 'react-native';
 import { JSONNode } from './Nodes';
 import createStylingFromTheme from './createStylingFromTheme';
+import { invertTheme } from 'react-base16-styling';
 
 const identity = value => value;
+const expandRootNode = (keyName, data, level) => level === 0
+const defaultItemString = (type, data, itemType, itemString) => <Text>{itemType} {itemString}</Text>
+const defaultLabelRenderer = ([label]) => <Text>{label}:</Text>;
+const noCustomNode = () => false;
 
 /* eslint-disable no-param-reassign */
 function checkLegacyTheming(theme, props) {
@@ -43,6 +48,17 @@ function checkLegacyTheming(theme, props) {
   return theme;
 }
 
+function getStateFromProps(props) {
+  let theme = checkLegacyTheming(props.theme, props);
+  if (props.invertTheme) {
+    theme = invertTheme(theme);
+  }
+
+  return {
+    styling: createStylingFromTheme(theme),
+  };
+}
+
 /* eslint-enable no-param-reassign */
 
 class JSONTree extends React.Component {
@@ -63,18 +79,41 @@ class JSONTree extends React.Component {
   };
 
   static defaultProps = {
-    shouldExpandNode: (keyName, data, level) => level === 0, // expands root by default,
+    shouldExpandNode: expandRootNode,
     hideRoot: false,
     keyPath: ['root'],
-    getItemString: (type, data, itemType, itemString) => <Text>{itemType} {itemString}</Text>,
-    labelRenderer: ([label]) => <Text>{label}:</Text>,
+    getItemString: defaultItemString,
+    labelRenderer: defaultLabelRenderer,
     valueRenderer: identity,
     postprocessValue: identity,
-    isCustomNode: () => false,
+    isCustomNode: noCustomNode,
     collectionLimit: 50,
     invertTheme: true,
     sortObjectKeys: true,
   };
+
+  constructor(props) {
+    super(props);
+    this.state = getStateFromProps(props);
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (
+      ['theme', 'invertTheme'].find(
+        (k) => nextProps[k] !== this.props[k]
+      )
+    ) {
+      this.setState(getStateFromProps(nextProps));
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return !!Object.keys(nextProps).find((k) =>
+      k === 'keyPath'
+        ? nextProps[k].join('/') !== this.props[k].join('/')
+        : nextProps[k] !== this.props[k]
+    );
+  }
 
   render() {
     const {
@@ -82,22 +121,19 @@ class JSONTree extends React.Component {
       keyPath,
       postprocessValue,
       hideRoot,
-      theme,
-      invertTheme,
+      theme, // eslint-disable-line no-unused-vars
+      invertTheme: _, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
 
-    const styling = createStylingFromTheme(checkLegacyTheming(theme, rest), invertTheme);
+    const { styling } = this.state;
 
     return (
       <View {...styling('tree')}>
         <JSONNode
-          hideRoot={hideRoot}
+          {...{ postprocessValue, hideRoot, styling, ...rest }}
           keyPath={hideRoot ? [] : keyPath}
-          postprocessValue={postprocessValue}
-          styling={styling}
           value={postprocessValue(value)}
-          {...rest}
         />
       </View>
     );
