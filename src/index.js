@@ -6,8 +6,12 @@ import createStylingFromTheme from './createStylingFromTheme';
 import { invertTheme } from 'react-base16-styling';
 
 const identity = value => value;
-const expandRootNode = (keyName, data, level) => level === 0
-const defaultItemString = (type, data, itemType, itemString) => <Text>{itemType} {itemString}</Text>
+const expandRootNode = (_keyName, _data, level) => level === 0;
+const defaultItemString = (_type, _data, itemType, itemString) => (
+  <Text>
+    {itemType} {itemString}
+  </Text>
+);
 const defaultLabelRenderer = ([label]) => <Text>{label}:</Text>;
 const noCustomNode = () => false;
 
@@ -21,9 +25,9 @@ function checkLegacyTheming(theme, props) {
     getValueStyle: 'valueText',
   };
 
-  const deprecatedStylingMethods = Object
-    .keys(deprecatedStylingMethodsMap)
-    .filter(name => props[name]);
+  const deprecatedStylingMethods = Object.keys(
+    deprecatedStylingMethodsMap
+  ).filter(name => props[name]);
 
   if (deprecatedStylingMethods.length > 0) {
     if (typeof theme === 'string') {
@@ -32,9 +36,11 @@ function checkLegacyTheming(theme, props) {
       theme = { ...theme };
     }
 
-    deprecatedStylingMethods.forEach((name) => {
+    deprecatedStylingMethods.forEach(name => {
       // eslint-disable-next-line no-console
-      console.error(`Styling method "${name}" is deprecated, use the "theme" property instead`);
+      console.error(
+        `Styling method "${name}" is deprecated, use the "theme" property instead`
+      );
 
       theme[deprecatedStylingMethodsMap[name]] = ({ style }, ...args) => ({
         style: {
@@ -72,7 +78,9 @@ class JSONTree extends React.Component {
     ]).isRequired,
     hideRoot: PropTypes.bool,
     invertTheme: PropTypes.bool,
-    keyPath: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    keyPath: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    ),
     postprocessValue: PropTypes.func,
     sortObjectKeys: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     theme: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -97,18 +105,15 @@ class JSONTree extends React.Component {
     this.state = getStateFromProps(props);
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (
-      ['theme', 'invertTheme'].find(
-        (k) => nextProps[k] !== this.props[k]
-      )
-    ) {
-      this.setState(getStateFromProps(nextProps));
+  static getDerivedStateFromProps(props, state) {
+    if (['theme', 'invertTheme'].find(k => props[k] !== state[k])) {
+      return getStateFromProps(props);
     }
+    return null;
   }
 
   shouldComponentUpdate(nextProps) {
-    return !!Object.keys(nextProps).find((k) =>
+    return !!Object.keys(nextProps).find(k =>
       k === 'keyPath'
         ? nextProps[k].join('/') !== this.props[k].join('/')
         : nextProps[k] !== this.props[k]
