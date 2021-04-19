@@ -7,20 +7,22 @@
     "andytompkins",
     "jsdario",
     "patw0929",
-    "Swaagie"
+    "Swaagie",
+    "tannermares"
   ],
   "dependencies": {
     "prop-types": "^15.7.2",
-    "react-base16-styling": "github:dean177/react-base16-styling#fbc6593"
+    "react-base16-styling": "^0.8.0"
   },
   "description": "React Native JSON viewing component, based on react-json-tree",
   "devDependencies": {
     "babel-preset-react-native": "4.0.1",
     "enzyme": "^3.11.0",
+    "eslint-config-react-native": "^4.1.0",
     "immutable": "3.8.1",
     "jest": "26.6.3",
     "madge": "4.0.2",
-    "prettier": "2.2.1",
+    "prettier": "^2.2.1",
     "react": "17.0.2",
     "react-native": "0.64.0"
   },
@@ -47,7 +49,8 @@
     "lint": "eslint --max-warnings=0 src test Example",
     "test": "NODE_ENV=test jest",
     "start": "cd Examples && npm start",
-    "circular-dependency-check": "madge ./src/index.js --circular"
+    "circular-dependency-check": "madge ./src/index.js --circular",
+    "prettier-sync": "yarn && ./node_modules/prettier/bin-prettier.js --write \"src/**/*.js\" && ./node_modules/prettier/bin-prettier.js --write \"test/**/*.js\""
   },
   "version": "1.2.1"
 }
