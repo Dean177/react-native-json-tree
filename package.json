@@ -52,5 +52,5 @@
     "circular-dependency-check": "madge ./src/index.js --circular",
     "prettier-sync": "yarn && ./node_modules/prettier/bin-prettier.js --write \"src/**/*.js\" && ./node_modules/prettier/bin-prettier.js --write \"test/**/*.js\""
   },
-  "version": "1.2.1"
+  "version": "1.2.2"
 }
