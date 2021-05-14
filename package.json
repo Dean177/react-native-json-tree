@@ -5,6 +5,7 @@
   },
   "contributors": [
     "andytompkins",
+    "hbiede",
     "jsdario",
     "patw0929",
     "Swaagie",
@@ -24,7 +25,8 @@
     "madge": "4.0.2",
     "prettier": "^2.2.1",
     "react": "17.0.2",
-    "react-native": "0.64.0"
+    "react-native": "0.64.0",
+    "typescript": "~4.2.2"
   },
   "homepage": "https://github.com/Dean177/react-native-json-tree",
   "keywords": [
@@ -52,5 +54,6 @@
     "circular-dependency-check": "madge ./src/index.js --circular",
     "prettier-sync": "yarn && ./node_modules/prettier/bin-prettier.js --write \"src/**/*.js\" && ./node_modules/prettier/bin-prettier.js --write \"test/**/*.js\""
   },
+  "types": "src/types/index.d.ts",
   "version": "1.2.1"
 }
