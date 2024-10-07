@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-const JSONArrow = ({ arrowStyle, expanded, nodeType, onPress, styling }) => (
+const JSONArrow = ({ arrowStyle = 'single', expanded, nodeType, onPress, styling }) => (
   <TouchableOpacity onPress={onPress}>
     <View {...styling('arrowContainer', arrowStyle)}>
       <Text {...styling(['arrow', 'arrowSign'], nodeType, expanded, arrowStyle)}>
@@ -21,10 +21,6 @@ JSONArrow.propTypes = {
   nodeType: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
   styling: PropTypes.func.isRequired,
-};
-
-JSONArrow.defaultProps = {
-  arrowStyle: 'single',
 };
 
 export default JSONArrow;
