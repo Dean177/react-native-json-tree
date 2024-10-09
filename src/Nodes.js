@@ -78,9 +78,10 @@ export const JSONNode = ({
 }) => {
   const nodeType = isCustomNode(value) ? 'Custom' : objType(value)
 
+  const key = keyPath[0]
+
   const simpleNodeProps = {
     getItemString,
-    key: keyPath[0],
     keyPath,
     labelRenderer,
     nodeType,
@@ -99,20 +100,21 @@ export const JSONNode = ({
   switch (nodeType) {
     case 'Object':
     case 'Error':
-      return <JSONObjectNode {...nestedNodeProps} />
+      return <JSONObjectNode key={key} {...nestedNodeProps} />
     case 'Array':
-      return <JSONArrayNode {...nestedNodeProps} />
+      return <JSONArrayNode key={key} {...nestedNodeProps} />
     case 'Iterable':
-      return <JSONIterableNode {...nestedNodeProps} />
+      return <JSONIterableNode key={key} {...nestedNodeProps} />
     case 'String':
       return (
-        <JSONValueNode {...simpleNodeProps} valueGetter={(raw) => `"${raw}"`} />
+        <JSONValueNode key={key} {...simpleNodeProps} valueGetter={(raw) => `"${raw}"`} />
       )
     case 'Number':
-      return <JSONValueNode {...simpleNodeProps} />
+      return <JSONValueNode key={key} {...simpleNodeProps} />
     case 'Boolean':
       return (
         <JSONValueNode
+          key={key}
           {...simpleNodeProps}
           valueGetter={(raw) => (raw ? 'true' : 'false')}
         />
@@ -120,26 +122,28 @@ export const JSONNode = ({
     case 'Date':
       return (
         <JSONValueNode
+          key={key}
           {...simpleNodeProps}
           valueGetter={(raw) => raw.toISOString()}
         />
       )
     case 'Null':
-      return <JSONValueNode {...simpleNodeProps} valueGetter={() => 'null'} />
+      return <JSONValueNode key={key} {...simpleNodeProps} valueGetter={() => 'null'} />
     case 'Undefined':
       return (
-        <JSONValueNode {...simpleNodeProps} valueGetter={() => 'undefined'} />
+        <JSONValueNode key={key} {...simpleNodeProps} valueGetter={() => 'undefined'} />
       )
     case 'Function':
     case 'Symbol':
       return (
         <JSONValueNode
+          key={key}
           {...simpleNodeProps}
           valueGetter={(raw) => raw.toString()}
         />
       )
     case 'Custom':
-      return <JSONValueNode {...simpleNodeProps} />
+      return <JSONValueNode key={key} {...simpleNodeProps} />
     default:
       return null
   }
