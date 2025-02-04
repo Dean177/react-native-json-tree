@@ -39,7 +39,7 @@ const JSONValueNode = ({
   keyPath,
   valueRenderer,
   value,
-  valueGetter,
+  valueGetter = (value) => value,
 }) => (
   <View {...styling('value', nodeType, keyPath)}>
     <Text {...styling(['label', 'valueLabel'], nodeType, keyPath)}>
@@ -62,8 +62,6 @@ JSONValueNode.propTypes = {
   valueGetter: PropTypes.func,
   valueRenderer: PropTypes.func.isRequired,
 }
-
-JSONValueNode.defaultProps = { valueGetter: (value) => value }
 
 
 export const JSONNode = ({
